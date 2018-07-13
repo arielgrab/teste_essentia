@@ -1,6 +1,6 @@
 <?php
 ini_set('display_errors', true);
-error_reporting(E_ALL);
+error_reporting(E_ERROR);
 
 require(__DIR__ . "/db/Connection.php");
 require(__DIR__ . "/db/Model.php");
@@ -11,5 +11,6 @@ spl_autoload_extensions('.class.php');
 spl_autoload_register();
 
 
+require_once __DIR__ . '/config/routes.php';
 require_once __DIR__ . '/app/views/app.php';
 
