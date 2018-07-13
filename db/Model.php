@@ -17,7 +17,7 @@ class Model extends Connection
      *
      * @var string
      */
-    protected $table;
+    public $table;
  
     function __construct() 
     {
