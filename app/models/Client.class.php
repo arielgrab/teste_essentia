@@ -7,6 +7,8 @@ class Client extends Model
 {
 	function __construct()
 	{
-		$this->table = 'client';
+		parent::__construct();
+		$this->table = 'clients';
+		$this->fields = ['id', 'name', 'email', 'tel', 'image'];
 	}
 }

@@ -17,7 +17,13 @@ class Model extends Connection
      *
      * @var string
      */
-    public $table;
+    protected $table;
+    /**
+     * campos da tabela
+     *
+     * @var string
+     */
+    protected $fields;
  
     function __construct() 
     {
@@ -35,18 +41,25 @@ class Model extends Connection
     {
     	try {
             if (is_array($values)) {
+                $values = $this->filter($values);
+
                 foreach ($values as $field => $value) {
                     if ($field) {
                         $array_values[] = $field . '=:' . $field;
                     }
                 }
+                $array_values[] = 'created_at = :created_at';
+                $array_values[] = 'updated_at = :updated_at';
+                $values['created_at'] = date('Y-m-d H:i:s');
+                $values['updated_at'] = date('Y-m-d H:i:s');
             }
             if (count($array_values)) {
                 $str_values = implode(",", $array_values);
-                $query = 'INSERT INTO ' . $this->tabela . ' SET ' . $str_values;
+                $query = 'INSERT INTO ' . $this->table . ' SET ' . $str_values;
                 
                 $sth = $this->connect->prepare($query);
                 $sth->execute($values);
+                $id = $this->connect->lastInsertId();
 
                 $result = ['status' => true, 'id' => $id];
             }
@@ -72,14 +85,16 @@ class Model extends Connection
                         $array_values[] = $field . '=:' . $field;
                     }
                 }
+                $array_values[] = 'updated_at = :updated_at';
+                $values['updated_at'] = date('Y-m-d H:i:s');
             }
             if (count($array_values)) {
                 $str_values = implode(",", $array_values);
-                $query = 'UPDATE ' . $this->tabela . ' SET ' . $str_values . ' WHERE id = :id';
+                $query = 'UPDATE ' . $this->table . ' SET ' . $str_values . ' WHERE id = :id';
                 
-                $sth = $this->connect->prepare($query);
+                $stmt = $this->connect->prepare($query);
                 $values['id'] = $id;
-                $sth->execute($values);
+                $stmt->execute($values);
 
                 $result = ['status' => true, 'id' => $id];
             }
@@ -103,23 +118,42 @@ class Model extends Connection
 	/**
      * retorna todos os registros da tabela
      *
-     * @param  array $params ['order', 'limit']
      * @return array
      */
-    function select($params = '')
+    function select()
     {
+        $query = 'SELECT * FROM ' . $this->table;
 
+        try {
+            $stmt = $this->connect->prepare($query);
+            $stmt->execute();
+            return $stmt->fetchAll(\PDO::FETCH_ASSOC);
+        } catch (PDOException $e) {
+            return 'Error: ' . $e->getMessage();
+        }
     }
 
     /**
      * retorna um determinado registro 
      *
      * @param  int $int
-     * @return array
+     * @return array|bol
      */
     function find($id)
     {
+        if(!$id){
+            return false;
+        }
+        $query = 'SELECT * FROM ' . $this->table . ' WHERE id = :id';
 
+        try {
+            $stmt = $this->connect->prepare($query);
+            $values['id'] = $id;
+            $stmt->execute($values);
+            return $stmt->fetchAll(\PDO::FETCH_ASSOC);
+        } catch (PDOException $e) {
+            return 'Error: ' . $e->getMessage();
+        }
     }
 
     /**
@@ -133,6 +167,26 @@ class Model extends Connection
 
     }
 
+    /**
+     * filtra os campos do request
+     *
+     * @param  array $request
+     * @return array
+     */
+    function filter($request){
+        if(!count($request)){
+            return false;
+        }
+        if(!count($this->fields)){
+            return false;
+        }
+        foreach ($request as $field => $value) {
+            if(!in_array($field, $this->fields)){
+                unset($request[$field]);
+            }
+        }
+        return $request;
+    }
 
 
 } 

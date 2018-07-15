@@ -6,7 +6,7 @@ class Connection extends \PDO
  
     const HOST = 'localhost';
     const DB = 'teste_essentia';
-    const USER = 'phpmyadmin';
+    const USER = 'root';
     const PASS = 'some_pass';
 
 

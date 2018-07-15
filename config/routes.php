@@ -5,14 +5,26 @@ list($_base, $_model, $_action, $_param) = $request_uri;
 
 switch ($_model) {
     case '':
+
+        $clientsController = new \App\ClientsController();
+        $clients = $clientsController->index();
+
         $_content = 'client/index.html.php';
         break;
     case 'client':
         switch ($_action) {
             case '':
+
+                $clientsController = new \App\ClientsController();
+                $clients = $clientsController->index();
+
                 $_content = 'client/index.html.php';
                 break;
             case 'show':
+
+                $clientsController = new \App\ClientsController();
+                $client = $clientsController->show($_param);
+
                 $_content = 'client/show.html.php';
                 break;
             case 'new':
@@ -21,6 +33,15 @@ switch ($_model) {
             case 'edit':
                 $_content = 'client/edit.html.php';
                 break;
+
+            case 'create':
+
+                $clientsController = new \App\ClientsController();
+                $clients = $clientsController->create($_POST);
+
+                $_content = 'client/index.html.php';
+                break;
+
             default:
                 header('HTTP/1.0 404 Not Found');
                 $_content = '404.html.php';
