@@ -1,3 +1,6 @@
 .thumb{
 	height: 50px;
 }
+.no-float{
+	float: none;
+}
