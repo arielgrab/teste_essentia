@@ -1,5 +1,11 @@
 <?php if (!count($clients)){ ?>
-	<p>Nenhum cliente cadastrado.</p>
+	<div class="row">
+		<div class="col-md-6 center-block no-float">
+			<div class="panel panel-body text-center">
+				Nenhum cliente cadastrado.
+			</div>
+		</div>
+	</div>
 <?php }else{ ?>
 
 <div class="page-header">

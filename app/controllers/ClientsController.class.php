@@ -46,7 +46,8 @@ class ClientsController
 	 */
 	public function show($id)
 	{
-		return $this->model->find($id);
+		$client = $this->model->find($id);
+		return count($client) ? $client : Helper::redirect('/');
 	}
 
 	/**
@@ -56,7 +57,8 @@ class ClientsController
 	 */
 	public function edit($id)
 	{
-		return $this->model->find($id);
+		$client = $this->model->find($id);
+		return count($client) ? $client : Helper::redirect('/');
 	}
 
 	/**
