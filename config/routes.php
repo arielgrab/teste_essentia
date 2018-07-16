@@ -31,6 +31,10 @@ switch ($_model) {
                 $_content = 'client/new.html.php';
                 break;
             case 'edit':
+
+                $clientsController = new \App\ClientsController();
+                $client = $clientsController->edit($_param);
+
                 $_content = 'client/edit.html.php';
                 break;
 
@@ -38,6 +42,14 @@ switch ($_model) {
 
                 $clientsController = new \App\ClientsController();
                 $clients = $clientsController->create($_POST);
+
+                $_content = 'client/index.html.php';
+                break;
+
+            case 'update':
+
+                $clientsController = new \App\ClientsController();
+                $clients = $clientsController->update($_param, $_POST);
 
                 $_content = 'client/index.html.php';
                 break;

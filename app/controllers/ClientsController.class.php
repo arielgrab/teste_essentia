@@ -14,7 +14,6 @@ class ClientsController
 		return $client->select();
 	}
 
-
 	public function create($post)
 	{
 		$client = new Client();
@@ -28,4 +27,19 @@ class ClientsController
 		$client = new Client();
 		return $client->find($id);
 	}
+
+	public function edit($id)
+	{
+		$client = new Client();
+		return $client->find($id);
+	}
+
+	public function update($id, $post)
+	{
+		$client = new Client();
+		$client->update($id, $post);
+
+		return $client->select();
+	}
+
 }

@@ -80,6 +80,8 @@ class Model extends Connection
     {
     	try {
             if (is_array($values)) {
+                $values = $this->filter($values);
+
                 foreach ($values as $field => $value) {
                     if ($field) {
                         $array_values[] = $field . '=:' . $field;
@@ -91,7 +93,7 @@ class Model extends Connection
             if (count($array_values)) {
                 $str_values = implode(",", $array_values);
                 $query = 'UPDATE ' . $this->table . ' SET ' . $str_values . ' WHERE id = :id';
-                
+
                 $stmt = $this->connect->prepare($query);
                 $values['id'] = $id;
                 $stmt->execute($values);
@@ -150,7 +152,7 @@ class Model extends Connection
             $stmt = $this->connect->prepare($query);
             $values['id'] = $id;
             $stmt->execute($values);
-            return $stmt->fetchAll(\PDO::FETCH_ASSOC);
+            return $stmt->fetchAll(\PDO::FETCH_ASSOC)[0];
         } catch (PDOException $e) {
             return 'Error: ' . $e->getMessage();
         }

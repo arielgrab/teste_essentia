@@ -1,3 +1,29 @@
-show.php
+		
+<div class="row">
+    <div class="col-md-12">
+      	<div class="panel panel-info">
+	        <div class="panel-heading">
+	          	<h3>
+	          		<img src='<?php echo $client['image'] ?>' class="img-responsive">
+		          	<?php echo $client['name'] ?>
+		          	<a href="/client/edit/<?php echo $client['id'] ?>" class="btn btn-warning pull-right">Editar</a>
+	          	</h3>
+	        </div>
+	        <div class="panel-body">
+	        	<div class="row">
+	    			<div class="col-md-3">
+	      				
+	        		</div>
+	    			<div class="col-md-9">
+			      		<p><strong>E-mail: </strong> <?php echo $client['email'] ?></p>
+			  			<p><strong>Telefone: </strong><?php echo $client['tel'] ?></p>
+			  			<hr>
+			  			<p><strong>Criado em: </strong><?php echo $client['created_at'] ?></p>
+			  			<p><strong>Atualizado em: </strong><?php echo $client['updated_at'] ?></p>
+	    			</div>
+	        	</div>
 
-<?php print_r($client); ?>
+	        </div>
+      	</div>
+    </div>
+</div>
