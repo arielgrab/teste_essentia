@@ -8,5 +8,5 @@
 </div>
 <div class="form-group">
     <label for="tel">Telefone</label>
-    <input type="text" class="form-control" id="tel" name="tel" placeholder="(00) 00000-0000" value='<?php echo $client['tel'] ?>'>
+    <input type="text" class="form-control tel" id="tel" name="tel" placeholder="(00) 00000-0000" value='<?php echo $client['tel'] ?>'>
 </div>

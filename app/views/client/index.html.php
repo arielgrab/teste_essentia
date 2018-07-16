@@ -26,8 +26,8 @@
 				<td><a href="/client/show/<?php echo $value['id']; ?>"><?php echo $value['name']; ?></a></td>
 				<td><?php echo $value['email']; ?></td>
 				<td><?php echo $value['tel']; ?></td>
-				<td><?php echo $value['created_at']; ?></td>
-				<td><?php echo $value['updated_at']; ?></td>
+				<td><?php echo \App\Helper::date_format($value['created_at']); ?></td>
+				<td><?php echo \App\Helper::date_format($value['updated_at']); ?></td>
 				<td><a href="/client/edit/<?php echo $value['id'] ?>" class="btn btn-warning"> <i class="glyphicon glyphicon-pencil" aria-hidden="true"></i> </a></td>
 				<td><?php echo \App\Helper::delete('client', $value['id']); ?></td>
 			</tr>
