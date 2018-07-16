@@ -1,7 +1,10 @@
 <?php
 ini_set('display_errors', true);
-// error_reporting(E_ALL);
 error_reporting(E_ERROR);
+
+define('ROOT_DIR', __DIR__);
+define('ROOT_URL', (!empty($_SERVER['HTTPS']) ? 'https' : 'http') . '://' . $_SERVER['HTTP_HOST'] . '/');
+
 
 require(__DIR__ . "/db/Connection.php");
 require(__DIR__ . "/db/Model.php");

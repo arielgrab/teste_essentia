@@ -2,7 +2,7 @@
   <h3>Novo <small>cliente</small></h3>
 </div>
 
-<form action="/client/create" name='frm_client_new' method="post">
+<form action="/client/create" name='frm_client_new' method="post" enctype="multipart/form-data">
     
     <?php require_once '_form.html.php'; ?>
 

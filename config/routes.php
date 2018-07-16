@@ -1,4 +1,17 @@
 <?php
+
+/*
+|--------------------------------------------------------------------------
+| Rotas
+|--------------------------------------------------------------------------
+|
+| Aqui são criadas as rotas da aplicação. As rotas funcionam da seguinte 
+| forma: http://localhost:8000/$_model/$_action/$_param
+| 
+|
+*/
+
+
 $request_uri = explode('/', explode('?', $_SERVER['REQUEST_URI'], 2)[0]);
 list($_base, $_model, $_action, $_param) = $request_uri;
 
@@ -40,17 +53,15 @@ switch ($_model) {
             case 'create':
 
                 $clientsController = new \App\ClientsController();
-                $clients = $clientsController->create($_POST);
+                $clients = $clientsController->create($_POST, $_FILES);
 
-                $_content = 'client/index.html.php';
                 break;
 
             case 'update':
 
                 $clientsController = new \App\ClientsController();
-                $clients = $clientsController->update($_param, $_POST);
+                $clients = $clientsController->update($_param, $_POST, $_FILES);
 
-                $_content = 'client/index.html.php';
                 break;
 
             case 'delete':
@@ -58,7 +69,6 @@ switch ($_model) {
                 $clientsController = new \App\ClientsController();
                 $clients = $clientsController->delete($_param);
 
-                $_content = 'client/index.html.php';
                 break;
 
             default:

@@ -139,9 +139,7 @@ class Model extends Connection
         $query = 'SELECT * FROM ' . $this->table;
 
         try {
-            $stmt = $this->connect->prepare($query);
-            $stmt->execute();
-            return $stmt->fetchAll(\PDO::FETCH_ASSOC);
+            return $this->runQuery($query, $values);
         } catch (PDOException $e) {
             return 'Error: ' . $e->getMessage();
         }
@@ -161,10 +159,8 @@ class Model extends Connection
         $query = 'SELECT * FROM ' . $this->table . ' WHERE id = :id';
 
         try {
-            $stmt = $this->connect->prepare($query);
             $values['id'] = $id;
-            $stmt->execute($values);
-            return $stmt->fetchAll(\PDO::FETCH_ASSOC)[0];
+            return $this->runQuery($query, $values)[0];
         } catch (PDOException $e) {
             return 'Error: ' . $e->getMessage();
         }
@@ -174,11 +170,17 @@ class Model extends Connection
      * executa um comando sql
      *
      * @param  string $query
+     * @param  array $values
      * @return array|bol
      */
-    function runQuery($query)
+    function runQuery($query, $values = [])
     {
-
+        if(!$query){
+            return false;
+        }
+        $stmt = $this->connect->prepare($query);
+        $stmt->execute($values);
+        return $stmt->fetchAll(\PDO::FETCH_ASSOC);
     }
 
     /**

@@ -9,7 +9,7 @@
 <table class="table">
 	<thead>
 		<tr>
-			<td>Imagem</td>
+			<td></td>
 			<td>Nome</td>
 			<td>E-mail</td>
 			<td>Telefone</td>
@@ -22,7 +22,7 @@
 	<tbody>
 		<?php foreach ($clients as $key => $value) { ?>
 			<tr>
-				<td><?php echo $value['image']; ?></td>
+				<td><?php echo \App\Helper::img($value['image'], 'img-rounded thumb'); ?></td>
 				<td><a href="/client/show/<?php echo $value['id']; ?>"><?php echo $value['name']; ?></a></td>
 				<td><?php echo $value['email']; ?></td>
 				<td><?php echo $value['tel']; ?></td>

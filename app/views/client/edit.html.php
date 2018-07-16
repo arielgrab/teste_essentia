@@ -4,7 +4,7 @@
   	<div class="pull-right"><?php echo \App\Helper::delete('client', $client['id']); ?></div>
   </h3>
 </div>
-<form action="/client/update/<?php echo $client['id'] ?>" name='frm_client_edit' method="post">
+<form action="/client/update/<?php echo $client['id'] ?>" name='frm_client_edit' method="post" enctype="multipart/form-data">
     
     <?php require_once '_form.html.php'; ?>
 
