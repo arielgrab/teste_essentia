@@ -42,4 +42,12 @@ class ClientsController
 		return $client->select();
 	}
 
+	public function delete($id)
+	{
+		$client = new Client();
+		$client->delete($id);
+
+		return $client->select();
+	}
+
 }

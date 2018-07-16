@@ -54,6 +54,14 @@ switch ($_model) {
                 $_content = 'client/index.html.php';
                 break;
 
+            case 'delete':
+
+                $clientsController = new \App\ClientsController();
+                $clients = $clientsController->delete($_param);
+
+                $_content = 'client/index.html.php';
+                break;
+
             default:
                 header('HTTP/1.0 404 Not Found');
                 $_content = '404.html.php';

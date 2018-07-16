@@ -114,7 +114,19 @@ class Model extends Connection
      */
     function delete($id)
     {
+        if(!$id){
+            return false;
+        }
+        $query = 'DELETE FROM ' . $this->table . ' WHERE id = :id';
 
+        try {
+            $stmt = $this->connect->prepare($query);
+            $values['id'] = $id;
+            $stmt->execute($values);
+            return true;
+        } catch (PDOException $e) {
+            return 'Error: ' . $e->getMessage();
+        }
     }
 
 	/**

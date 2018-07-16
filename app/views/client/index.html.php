@@ -16,6 +16,7 @@
 			<td>Criado em</td>
 			<td>Atualizado em</td>
 			<td></td>
+			<td></td>
 		</tr>
 	</thead>
 	<tbody>
@@ -28,6 +29,7 @@
 				<td><?php echo $value['created_at']; ?></td>
 				<td><?php echo $value['updated_at']; ?></td>
 				<td><a href="/client/edit/<?php echo $value['id'] ?>" class="btn btn-warning"> <i class="glyphicon glyphicon-pencil" aria-hidden="true"></i> </a></td>
+				<td><form action='/client/delete/<?php echo $value['id'] ?>' method='DELETE'><button type='submit' class="btn btn-danger"> <i class="glyphicon glyphicon-trash" aria-hidden="true"></i></button></form></td>
 			</tr>
 		<?php } ?>
 	</tbody>
