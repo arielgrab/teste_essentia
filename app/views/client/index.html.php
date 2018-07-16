@@ -3,7 +3,7 @@
 <?php }else{ ?>
 
 <div class="page-header">
-  <h3>Clientes <small>lista</small></h3>
+  <h3>Lista <small>clientes</small></h3>
 </div>
 
 <table class="table">
