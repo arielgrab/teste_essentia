@@ -12,7 +12,7 @@ spl_autoload_register(function ($class) {
 
     $base_dir = __DIR__ . '/app/';
 
-    $folders = ['models', 'controllers'];
+    $folders = ['models', 'controllers', 'helpers'];
 
     $len = strlen($prefix);
     if (strncmp($prefix, $class, $len) !== 0) {

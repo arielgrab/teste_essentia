@@ -1,5 +1,4 @@
 <?php
-
 $request_uri = explode('/', explode('?', $_SERVER['REQUEST_URI'], 2)[0]);
 list($_base, $_model, $_action, $_param) = $request_uri;
 
