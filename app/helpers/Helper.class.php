@@ -37,7 +37,7 @@ class Helper
 	 */
 	static function img($src = '', $class = '')
 	{
-		return $src ? '<img src="'.ROOT_URL.'/uploads/' . $src . '" class="img-responsive '.$class.'">' : '';
+		return $src ? '<img src="'.ROOT_URL.'/uploads/' . $src . '" class="'.$class.'">' : '';
 	}
 
 	/**

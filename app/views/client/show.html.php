@@ -11,7 +11,7 @@
 	        <div class="panel-body">
 	        	<div class="row">
 	    			<div class="col-md-3">
-	          			<?php echo \App\Helper::img($client['image'], 'img-rounded'); ?>
+	          			<?php echo \App\Helper::img($client['image'], 'img-responsive img-rounded'); ?>
 	        		</div>
 	    			<div class="col-md-9">
 			      		<p><strong>E-mail: </strong> <?php echo $client['email'] ?></p>
